@@ -77,6 +77,10 @@
     <Content Include="FamousMuseums.aspx" />
     <Content Include="HistoryMuseums.aspx" />
     <Content Include="Home.aspx" />
+    <Content Include="Images\british_museum.jpg" />
+    <Content Include="Images\hermitage_museum.jpg" />
+    <Content Include="Images\louvre.jpg" />
+    <Content Include="Images\met_museum.jpg" />
     <Content Include="Importance.aspx" />
     <Content Include="IsraelMuseums.aspx" />
     <Content Include="JavaScript.js" />
@@ -85,6 +89,7 @@
     <Content Include="log_out.aspx" />
     <Content Include="Register.aspx" />
     <Content Include="ScienceMuseums.aspx" />
+    <Content Include="stats.aspx" />
     <Content Include="view_data.aspx" />
     <Content Include="Web.config" />
     <Content Include="WhatIsMuseum.aspx" />
@@ -181,6 +186,13 @@
     </Compile>
     <Compile Include="ScienceMuseums.aspx.designer.cs">
       <DependentUpon>ScienceMuseums.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="stats.aspx.cs">
+      <DependentUpon>stats.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="stats.aspx.designer.cs">
+      <DependentUpon>stats.aspx</DependentUpon>
     </Compile>
     <Compile Include="view_data.aspx.cs">
       <DependentUpon>view_data.aspx</DependentUpon>

@@ -113,6 +113,10 @@
 
             <asp:Button ID="btnViewData" runat="server" Text="צפייה בנתונים" CssClass="admin-btn btn-view"
                 PostBackUrl="view_data.aspx" />
+
+            <asp:Button ID="Button1" runat="server" Text="סטיסטיקה" CssClass="admin-btn btn-view"
+                PostBackUrl="stats.aspx" />
+
         </div>
 
         <div class="site-footer">

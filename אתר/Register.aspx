@@ -218,6 +218,12 @@
                     </td>
                 </tr>
                 <tr>
+                    <td>גיל</td>
+                    <td>
+                        <input type="number" id="a" name="a" />
+                    </td>
+                </tr>
+                <tr>
                     <td colspan="2">
                         <input type="submit" value="השלם הרשמה" /> 
                     </td>

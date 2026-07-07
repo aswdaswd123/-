@@ -23,6 +23,8 @@ namespace אתר
                 String gender = Request["gender"];
                 String email = Request["g"];
                 String pass = Request["p"];
+                int age = Convert.ToInt32(Request["a"]);
+                
 
                 String sql1 = "SELECT* FROM users WHERE username ='" + username + "' AND pass ='" + pass + "';";
                 DataSet ds = new DataSet();

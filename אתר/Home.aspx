@@ -15,6 +15,11 @@
             direction: rtl;
             text-align: right;
             background-color: #f4f1ea;
+
+            background-image: url('Images/louvre.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
             color: #2b2b2b;
         }
 
