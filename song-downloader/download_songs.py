@@ -5,8 +5,8 @@ Download a list of songs as MP3s using the yt-audio-api server
 
 The songs list is a text file with one song per line:
 
-    1. SONG NAME, SINGER
-    2. Another Song, Another Singer
+    1. SONG NAME - SINGER
+    2. Another Song, Another Singer      (comma form also works)
 
 Usage:
     python download_songs.py <output_folder> <songs_file> [--api http://127.0.0.1:5000]
@@ -24,18 +24,22 @@ import urllib.parse
 import urllib.request
 from pathlib import Path
 
-LINE_PATTERN = re.compile(r"^\s*\d+\s*[.)]\s*(?P<song>.+?)\s*,\s*(?P<singer>.+?)\s*$")
+# "1. SONG - SINGER" (split on the last " - ") or "1. SONG, SINGER" (split on the last comma).
+LINE_PATTERNS = [
+    re.compile(r"^\s*\d+\s*[.)]\s*(?P<song>.+)\s+-\s+(?P<singer>.+?)\s*$"),
+    re.compile(r"^\s*\d+\s*[.)]\s*(?P<song>.+),\s*(?P<singer>.+?)\s*$"),
+]
 
 
 def parse_songs(text):
-    """Return a list of (song, singer) tuples from '1. SONG, SINGER' lines."""
+    """Return a list of (song, singer) tuples from '1. SONG - SINGER' or '1. SONG, SINGER' lines."""
     songs = []
     for line_number, line in enumerate(text.splitlines(), start=1):
         if not line.strip():
             continue
-        match = LINE_PATTERN.match(line)
+        match = next((m for m in (p.match(line) for p in LINE_PATTERNS) if m), None)
         if not match:
-            print(f"  ! Skipping line {line_number}, expected '1. SONG NAME, SINGER': {line!r}")
+            print(f"  ! Skipping line {line_number}, expected '1. SONG - SINGER': {line!r}")
             continue
         songs.append((match.group("song"), match.group("singer")))
     return songs
@@ -71,7 +75,7 @@ def api_error_message(error):
 def main():
     parser = argparse.ArgumentParser(description="Download songs as MP3s via yt-audio-api.")
     parser.add_argument("folder", help="Folder to save the MP3s into (created if missing)")
-    parser.add_argument("songs_file", help="Text file with lines like '1. SONG NAME, SINGER'")
+    parser.add_argument("songs_file", help="Text file with lines like '1. SONG NAME - SINGER'")
     parser.add_argument("--api", default="http://127.0.0.1:5000",
                         help="Base URL of the running yt-audio-api server (default: %(default)s)")
     args = parser.parse_args()
